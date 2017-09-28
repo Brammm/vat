@@ -7,6 +7,7 @@
  */
 
 namespace Brammm\Vat\Validator;
+use function Brammm\Vat\sumWeights;
 
 /**
  * Class ValidatorEE
@@ -26,8 +27,6 @@ namespace Brammm\Vat\Validator;
  */
 class ValidatorEE implements VatNumberValidator
 {
-    use ProvidesSumWeights;
-
     /**
      * @param string $vatNumber
      * @return bool
@@ -40,7 +39,7 @@ class ValidatorEE implements VatNumberValidator
 
         $weights = [3, 7, 1, 3, 7, 1, 3, 7];
         $checksum = (int)$vatNumber[8];
-        $checkval = $this->sumWeights($weights, $vatNumber);
+        $checkval = sumWeights($weights, $vatNumber);
 
         $checkval = (ceil($checkval / 10) * 10) - $checkval;
 

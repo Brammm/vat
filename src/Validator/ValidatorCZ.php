@@ -7,6 +7,7 @@
  */
 
 namespace Brammm\Vat\Validator;
+use function Brammm\Vat\sumWeights;
 
 /**
  * Class ValidatorCZ
@@ -34,8 +35,6 @@ namespace Brammm\Vat\Validator;
  */
 class ValidatorCZ implements VatNumberValidator
 {
-    use ProvidesSumWeights;
-
     /**
      * @var array
      */
@@ -92,7 +91,7 @@ class ValidatorCZ implements VatNumberValidator
     {
         $weights = array(8, 7, 6, 5, 4, 3, 2);
         $checksum = (int)$vatNumber[7];
-        $checkbase = $this->sumWeights($weights, $vatNumber);
+        $checkbase = sumWeights($weights, $vatNumber);
 
         $checkval = ($checkbase % 11) ? ceil($checkbase / 11.1) * 11 : (($checkbase % 11) + 11);
 
@@ -170,7 +169,7 @@ class ValidatorCZ implements VatNumberValidator
     protected function validateIndividualsShortSpecial($vatNumber)
     {
         $weights = array(0, 8, 7, 6, 5, 4, 3, 2);
-        $checkval = $this->sumWeights($weights, $vatNumber, 1);
+        $checkval = sumWeights($weights, $vatNumber, 1);
         $checksum = ($checkval % 11);
 
         if ($checksum > 0) {

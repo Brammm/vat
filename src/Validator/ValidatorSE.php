@@ -7,6 +7,8 @@
  */
 
 namespace Brammm\Vat\Validator;
+use function Brammm\Vat\crossSum;
+use function Brammm\Vat\isEven;
 
 /**
  * Class ValidatorSE
@@ -26,9 +28,6 @@ namespace Brammm\Vat\Validator;
  */
 class ValidatorSE implements VatNumberValidator
 {
-    use ProvidesIsEven;
-    use ProvidesCrossSum;
-
     /**
      * @param string $vatNumber
      * @return bool
@@ -47,7 +46,7 @@ class ValidatorSE implements VatNumberValidator
         $checkval = 0;
 
         for ($i = 1; $i < 10; $i++) {
-            $checkval += $this->crossSum((int)$vatNumber[9 - $i] * ($this->isEven($i) ? 1 : 2));
+            $checkval += crossSum((int)$vatNumber[9 - $i] * (isEven($i) ? 1 : 2));
         }
 
         if ($checksum != (($checkval % 10) == 0 ? 0 : 10 - ($checkval % 10))) {
