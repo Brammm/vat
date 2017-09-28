@@ -28,6 +28,7 @@ namespace Brammm\Vat\Validator;
  */
 class ValidatorSI extends VatNumberValidatorAbstract
 {
+    use ProvidesSumWeights;
 
     /**
      * @param string $vatNumber

@@ -34,6 +34,8 @@ namespace Brammm\Vat\Validator;
  */
 class ValidatorCZ extends VatNumberValidatorAbstract
 {
+    use ProvidesSumWeights;
+
     /**
      * @var array
      */

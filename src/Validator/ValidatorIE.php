@@ -17,7 +17,6 @@ namespace Brammm\Vat\Validator;
  */
 class ValidatorIE extends VatNumberValidatorAbstract
 {
-
     protected $alphabet = 'WABCDEFGHIJKLMNOPQRSTUV';
 
     /**

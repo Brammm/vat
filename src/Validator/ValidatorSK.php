@@ -26,7 +26,6 @@ namespace Brammm\Vat\Validator;
  */
 class ValidatorSK extends VatNumberValidatorAbstract
 {
-
     /**
      * @param string $vatNumber
      * @return bool

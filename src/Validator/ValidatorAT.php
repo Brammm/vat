@@ -29,6 +29,8 @@ namespace Brammm\Vat\Validator;
  */
 class ValidatorAT extends VatNumberValidatorAbstract
 {
+    use ProvidesCrossSum;
+    use ProvidesIsEven;
 
     /**
      * @param string $vatNumber

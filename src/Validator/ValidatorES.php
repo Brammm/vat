@@ -41,6 +41,9 @@ namespace Brammm\Vat\Validator;
  */
 class ValidatorES extends VatNumberValidatorAbstract
 {
+    use ProvidesIsEven;
+    use ProvidesCrossSum;
+
     /**
      * Allowed C1 if C9 is Alphabetic
      *
