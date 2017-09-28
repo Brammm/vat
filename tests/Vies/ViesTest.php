@@ -4,7 +4,7 @@ declare (strict_types=1);
 namespace DragonBe\Test\Vies;
 
 use Brammm\Vat\HeartBeat;
-use Brammm\Vat\Validator\AggregateValidator;
+use Brammm\Vat\Tests\Validator\ValidValidator;
 use Brammm\Vat\VatNumber;
 use Brammm\Vat\Vies;
 use PHPUnit\Framework\TestCase;
@@ -306,6 +306,6 @@ class ViestTest extends TestCase
 
     private function getVatNumber(string $countryCode, string $vatNumber)
     {
-        return VatNumber::fromCountryCodeAndVatNumber($countryCode, $vatNumber, $this->createMock(AggregateValidator::class));
+        return VatNumber::fromCountryCodeAndVatNumber($countryCode, $vatNumber, new ValidValidator());
     }
 }

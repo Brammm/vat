@@ -2,7 +2,7 @@
 
 namespace Brammm\Vat;
 
-use Brammm\Vat\Validator\AggregateValidator;
+use Brammm\Vat\Validator\Validator;
 
 class VatNumber
 {
@@ -22,7 +22,7 @@ class VatNumber
         $this->vatNumber = $vatNumber;
     }
 
-    public static function fromIdentifier(string $identifier, AggregateValidator $validator)
+    public static function fromIdentifier(string $identifier, Validator $validator)
     {
         $countryCode = substr($identifier, 0, 2);
         $vatNumber = substr($identifier, 2);
@@ -37,7 +37,7 @@ class VatNumber
         );
     }
 
-    public static function fromCountryCodeAndVatNumber(string $countryCode, string $vatNumber, AggregateValidator $validator)
+    public static function fromCountryCodeAndVatNumber(string $countryCode, string $vatNumber, Validator $validator)
     {
         $vatNumber = self::filterVat($vatNumber);
 
