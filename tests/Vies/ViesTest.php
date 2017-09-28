@@ -4,6 +4,8 @@ declare (strict_types=1);
 namespace DragonBe\Test\Vies;
 
 use Brammm\Vat\HeartBeat;
+use Brammm\Vat\Validator\Validator;
+use Brammm\Vat\VatNumber;
 use Brammm\Vat\Vies;
 use PHPUnit\Framework\TestCase;
 
@@ -17,15 +19,6 @@ class ViestTest extends TestCase
              ['0123.456.749','0123456749'],
              ['0123-456-749','0123456749'],
         ];
-    }
-    /**
-     * @dataProvider vatNumberProvider
-     * @covers \Brammm\Vat\Vies::filterVat
-     */
-    public function testVatNumberFilter($vatNumber, $filteredNumber)
-    {
-        $this->assertEquals($filteredNumber,
-            Vies::filterVat($vatNumber));
     }
 
     protected function createdStubbedViesClient($response)
@@ -42,7 +35,7 @@ class ViestTest extends TestCase
     }
 
     /**
-     * @covers \Brammm\Vat\Vies::validateVat
+     * @covers \Brammm\Vat\Vies::validate
      * @covers \Brammm\Vat\Vies::setSoapClient
      */
     public function testSuccessVatNumberValidation()
@@ -58,14 +51,14 @@ class ViestTest extends TestCase
 
         $vies = $this->createdStubbedViesClient($response);
 
-        $response = $vies->validateVat('BE', '0123.456.749');
+        $response = $vies->validate($this->getVatNumber('BE', '0123.456.789'));
         $this->assertInstanceOf('\\Brammm\\Vat\\CheckVatResponse', $response);
         $this->assertTrue($response->isValid());
         return $response;
     }
 
     /**
-     * @covers \Brammm\Vat\Vies::validateVat
+     * @covers \Brammm\Vat\Vies::validate
      * @covers \Brammm\Vat\Vies::setSoapClient
      */
     public function testSuccessVatNumberValidationWithRequester()
@@ -81,14 +74,14 @@ class ViestTest extends TestCase
 
         $vies = $this->createdStubbedViesClient($response);
 
-        $response = $vies->validateVat('BE', '0123.456.749', 'PL', '1234567890');
+        $response = $vies->validate($this->getVatNumber('BE', '0123.456.789'));
         $this->assertInstanceOf('\\Brammm\\Vat\\CheckVatResponse', $response);
         $this->assertTrue($response->isValid());
         return $response;
     }
 
     /**
-     * @covers \Brammm\Vat\Vies::validateVat
+     * @covers \Brammm\Vat\Vies::validate
      * @covers \Brammm\Vat\Vies::setSoapClient
      */
     public function testFailureVatNumberValidation()
@@ -101,7 +94,7 @@ class ViestTest extends TestCase
 
         $vies = $this->createdStubbedViesClient($response);
 
-        $response = $vies->validateVat('BE', '0123.ABC.749');
+        $response = $vies->validate($this->getVatNumber('BE', '0123.ABC.789'));
         $this->assertInstanceOf('\\Brammm\\Vat\\CheckVatResponse', $response);
         $this->assertFalse($response->isValid());
     }
@@ -114,33 +107,6 @@ class ViestTest extends TestCase
             ['PH'],
             ['FS'],
         ];
-    }
-    /**
-     * Test to see the country code is rejected if not existing in the EU
-     *
-     * @dataProvider badCountryCodeProvider
-     * @covers \Brammm\Vat\Vies::validateVat
-     * @expectedException \Brammm\Vat\ViesException
-     * @param $code
-     */
-    public function testExceptionIsRaisedForNonEuropeanUnionCountryCodes($code)
-    {
-        $vies = new Vies();
-        $vies->validateVat($code, 'does not matter');
-    }
-
-    /**
-     * Test to see the country code is rejected if not existing in the EU
-     *
-     * @dataProvider badCountryCodeProvider
-     * @covers \Brammm\Vat\Vies::validateVat
-     * @expectedException \Brammm\Vat\ViesException
-     * @param $code
-     */
-    public function testExceptionIsRaisedForNonEuropeanUnionCountryCodesRequester($code)
-    {
-        $vies = new Vies();
-        $vies->validateVat('BE', '0123.456.749', $code, 'does not matter');
     }
 
     /**
@@ -162,7 +128,7 @@ class ViestTest extends TestCase
         $vies = new Vies();
         $vies->setSoapClient($stub);
 
-        $vies->validateVat('BE', $vat);
+        $vies->validate($this->getVatNumber('BE', $vat));
     }
 
     /**
@@ -338,12 +304,8 @@ class ViestTest extends TestCase
         $this->assertSame(80, $hb->getPort());
     }
 
-    /**
-     * @covers \Brammm\Vat\Vies::listEuropeanCountries
-     */
-    public function testRetrievingListOfEuropeanCountriesStatically()
+    private function getVatNumber(string $countryCode, string $vatNumber)
     {
-        $countryList = Vies::listEuropeanCountries();
-        $this->assertCount(Vies::VIES_EU_COUNTRY_TOTAL, $countryList);
+        return VatNumber::fromCountryCodeAndVatNumber($countryCode, $vatNumber, $this->createMock(Validator::class));
     }
 }

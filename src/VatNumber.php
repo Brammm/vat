@@ -63,4 +63,9 @@ class VatNumber
     {
         return $this->vatNumber;
     }
+
+    public function __toString()
+    {
+        return $this->countryCode . $this->vatNumber;
+    }
 }

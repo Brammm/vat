@@ -195,56 +195,22 @@ class Vies
      * Validates a given country code and VAT number and returns a
      * \Brammm\Vat\CheckVatResponse object
      *
-     * @param string $countryCode The two-character country code of a European
-     * member country
-     * @param string $vatNumber The VAT number (without the country
+     * @param VatNumber|string $vatNumber The VAT number (without the country
      * identification) of a registered company
      * @param string $requesterCountryCode The two-character country code of a European
      * member country
      * @param string $requesterVatNumber The VAT number (without the country
      * identification) of a registered company
-     * @return CheckVatResponse
      * @throws ViesException
      * @throws ViesServiceException
+     * @return CheckVatResponse
      */
-    public function validateVat(
-        string $countryCode,
-        string $vatNumber,
-        string $requesterCountryCode = '',
-        string $requesterVatNumber = ''
-    ) {
-
-        if (! array_key_exists($countryCode, self::listEuropeanCountries())) {
-            throw new ViesException(sprintf('Invalid country code "%s" provided', $countryCode));
-        }
-        $vatNumber = self::filterVat($vatNumber);
-
-        if (! $this->validateVatSum($countryCode, $vatNumber)) {
-            $params = new \StdClass();
-            $params->countryCode = $countryCode;
-            $params->vatNumber = $vatNumber;
-            $params->requestDate = new \DateTime();
-            $params->valid = false;
-
-            return new CheckVatResponse($params);
-        }
-
+    public function validate(VatNumber $vatNumber)
+    {
         $requestParams = [
-            'countryCode' => $countryCode,
-            'vatNumber' => $vatNumber
+            'countryCode' => $vatNumber->getCountryCode(),
+            'vatNumber' => $vatNumber->getVatNumber()
         ];
-
-        if ($requesterCountryCode && $requesterVatNumber) {
-            if (! array_key_exists($requesterCountryCode, self::listEuropeanCountries())) {
-                throw new ViesException(
-                    sprintf('Invalid requestor country code "%s" provided', $requesterCountryCode)
-                );
-            }
-            $requesterVatNumber = self::filterVat($requesterVatNumber);
-
-            $requestParams['requesterCountryCode'] = $requesterCountryCode;
-            $requestParams['requesterVatNumber'] = $requesterVatNumber;
-        }
 
         try {
             $response = $this->getSoapClient()->__soapCall(
@@ -254,85 +220,15 @@ class Vies
                 ]
             );
         } catch (SoapFault $e) {
-            $message = sprintf('Back-end VIES service cannot validate the VAT number "%s%s" at this moment. '
+            $message = sprintf('Back-end VIES service cannot validate the VAT number "%s" at this moment. '
                              . 'The service responded with the critical error "%s". This is probably a temporary '
                              . 'problem. Please try again later.',
-                               $countryCode, $vatNumber, $e->getMessage());
+                               $vatNumber, $e->getMessage());
             throw new ViesServiceException($message);
         }
         // Soap returns "yyyy-mm-dd+hh:mm" so we need to convert it
         $response->requestDate = new \DateTime(str_replace('+', ' ', $response->requestDate));
 
         return new CheckVatResponse($response);
-    }
-
-    /**
-     * Validate a VAT number control sum
-     *
-     * @param string $countryCode The two-character country code of a European
-     * member country
-     * @param string $vatNumber The VAT number (without the country
-     * identification) of a registered company
-     * @return bool
-     */
-    public function validateVatSum(string $countryCode, string $vatNumber): bool
-    {
-        $className = __NAMESPACE__ . '\\Validator\\Validator' . $countryCode;
-        /** @var Validator\CountryValidator $instance */
-        $instance = new $className();
-
-        $vatNumber = self::filterVat($vatNumber);
-        return $instance->validate($countryCode, $vatNumber);
-    }
-
-    /**
-     * Filters a VAT number and normalizes it to an alfanumeric string
-     *
-     * @param string $vatNumber
-     * @return string
-     * @static
-     */
-    public static function filterVat(string $vatNumber): string
-    {
-        return str_replace([' ', '.', '-'], '', $vatNumber);
-    }
-
-    /**
-     * A list of European Union countries as of January 2015
-     *
-     * @return array
-     */
-    public static function listEuropeanCountries(): array
-    {
-        return [
-            'AT' => 'Austria',
-            'BE' => 'Belgium',
-            'BG' => 'Bulgaria',
-            'CY' => 'Cyprus',
-            'CZ' => 'Czech Republic',
-            'DE' => 'Germany',
-            'DK' => 'Denmark',
-            'EE' => 'Estonia',
-            'EL' => 'Greece',
-            'ES' => 'Spain',
-            'FI' => 'Finland',
-            'FR' => 'France',
-            'HR' => 'Croatia',
-            'HU' => 'Hungary',
-            'IE' => 'Ireland',
-            'IT' => 'Italy',
-            'LU' => 'Luxembourg',
-            'LV' => 'Latvia',
-            'LT' => 'Lithuania',
-            'MT' => 'Malta',
-            'NL' => 'Netherlands',
-            'PL' => 'Poland',
-            'PT' => 'Portugal',
-            'RO' => 'Romania',
-            'SE' => 'Sweden',
-            'SI' => 'Slovenia',
-            'SK' => 'Slovakia',
-            'GB' => 'United Kingdom',
-        ];
     }
 }
