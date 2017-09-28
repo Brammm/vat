@@ -19,7 +19,7 @@ class ValidatorIE implements VatNumberValidator
             return false;
         }
 
-        if (! $this->validateIENew($vatNumber) && ! $this->validateIEOld($vatNumber)) {
+        if (!$this->validateIENew($vatNumber) && !$this->validateIEOld($vatNumber)) {
             return false;
         }
 

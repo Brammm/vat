@@ -77,7 +77,7 @@ class ValidatorES implements VatNumberValidator
             return false;
         }
 
-        if (! is_numeric(substr($vatNumber, 1, 6))) {
+        if (!is_numeric(substr($vatNumber, 1, 6))) {
             return false;
         }
 
