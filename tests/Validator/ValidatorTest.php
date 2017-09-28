@@ -2,6 +2,7 @@
 
 namespace Brammm\Vat\Tests\Validator;
 
+use Brammm\Vat\Exception\InvalidCountryCodeException;
 use Brammm\Vat\Exception\InvalidVatNumberException;
 use Brammm\Vat\Validator\Validator;
 use Brammm\Vat\Validator\ValidatorFactory;
@@ -22,9 +23,9 @@ class ValidatorTest extends TestCase
     /**
      * @dataProvider validVatNumberProvider
      */
-    public function testVatNumberChecksumSuccess($countryCode, $validNumbers)
+    public function testItStaysSilentOnValidNumber($countryCode, $validNumbers)
     {
-        if (! is_array($validNumbers)) {
+        if (!is_array($validNumbers)) {
             $validNumbers = [$validNumbers];
         }
 
@@ -37,12 +38,18 @@ class ValidatorTest extends TestCase
     /**
      * @dataProvider invalidVatNumberProvider
      */
-    public function testVatNumberChecksumFailure($countryCode, $invalidNumbers)
+    public function testItThrowsExceptionOnInvalidNumber($countryCode, $invalidNumbers)
     {
         foreach ($invalidNumbers as $number) {
             $this->expectException(InvalidVatNumberException::class);
             $this->validator->validate($countryCode, $number);
         }
+    }
+
+    public function testItThrowsExceptionOnInvalidCountryCode()
+    {
+        $this->expectException(InvalidCountryCodeException::class);
+        $this->validator->validate('FOO', '123');
     }
 
     public function validVatNumberProvider()
