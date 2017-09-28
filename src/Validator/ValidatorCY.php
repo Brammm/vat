@@ -21,6 +21,14 @@ class ValidatorCY implements CountryValidator
     /**
      * @inheritdoc
      */
+    public function getCountryCode(): string
+    {
+        return 'CY';
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) != 9) {

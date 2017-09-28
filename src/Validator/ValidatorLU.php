@@ -17,6 +17,14 @@ class ValidatorLU implements CountryValidator
     /**
      * @inheritdoc
      */
+    public function getCountryCode(): string
+    {
+        return 'LU';
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) != 8) {

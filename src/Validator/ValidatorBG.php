@@ -25,6 +25,14 @@ use function Brammm\Vat\sumWeights;
 class ValidatorBG implements CountryValidator
 {
     /**
+     * @inheritdoc
+     */
+    public function getCountryCode(): string
+    {
+        return 'BG';
+    }
+
+    /**
      * @param string $vatNumber
      * @return bool
      */

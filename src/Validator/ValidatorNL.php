@@ -27,6 +27,14 @@ class ValidatorNL implements CountryValidator
     /**
      * @inheritdoc
      */
+    public function getCountryCode(): string
+    {
+        return 'NL';
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) != 12) {

@@ -22,6 +22,14 @@ class ValidatorFI implements CountryValidator
     /**
      * @inheritdoc
      */
+    public function getCountryCode(): string
+    {
+        return 'FI';
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) != 8) {

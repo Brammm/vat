@@ -35,6 +35,14 @@ class ValidatorCZ implements CountryValidator
     /**
      * @inheritdoc
      */
+    public function getCountryCode(): string
+    {
+        return 'CZ';
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function validate(string $vatNumber): bool
     {
         $vatLength = strlen($vatNumber);

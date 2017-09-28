@@ -40,6 +40,14 @@ class ValidatorFR implements CountryValidator
     private const ALPHABET = '0123456789ABCDEFGHJKLMNPQRSTUVWXYZ';
 
     /**
+     * @inheritdoc
+     */
+    public function getCountryCode(): string
+    {
+        return 'FR';
+    }
+
+    /**
      * @param string $vatNumber
      * @return bool
      */

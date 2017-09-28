@@ -25,6 +25,14 @@ class ValidatorRO implements CountryValidator
     /**
      * @inheritdoc
      */
+    public function getCountryCode(): string
+    {
+        return 'RO';
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) < 2 || strlen($vatNumber) > 10) {
