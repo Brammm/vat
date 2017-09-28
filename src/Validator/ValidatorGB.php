@@ -48,7 +48,7 @@ class ValidatorGB implements CountryValidator
     /**
      * @inheritdoc
      */
-    public function validate(string $vatNumber): bool
+    public function validate(string $countryCode, string $vatNumber): bool
     {
         if (strlen($vatNumber) == 5) {
             return $this->validateGovernment($vatNumber);

@@ -42,7 +42,7 @@ class Validator
             throw InvalidCountryCodeException::forCountryCode($countryCode);
         }
 
-        if (!$this->validators[$countryCode]->validate($vatNumber)) {
+        if (!$this->validators[$countryCode]->validate($countryCode, $vatNumber)) {
             throw InvalidVatNumberException::forVatNumber($vatNumber);
         }
     }

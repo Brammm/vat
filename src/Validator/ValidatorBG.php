@@ -33,10 +33,11 @@ class ValidatorBG implements CountryValidator
     }
 
     /**
+     * @param string $countryCode
      * @param string $vatNumber
      * @return bool
      */
-    public function validate(string $vatNumber): bool
+    public function validate(string $countryCode, string $vatNumber): bool
     {
         if (strlen($vatNumber) != 9) {
             return false;

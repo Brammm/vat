@@ -282,7 +282,7 @@ class Vies
         $instance = new $className();
 
         $vatNumber = self::filterVat($vatNumber);
-        return $instance->validate($vatNumber);
+        return $instance->validate($countryCode, $vatNumber);
     }
 
     /**
