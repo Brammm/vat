@@ -42,7 +42,7 @@ namespace Brammm\Vat\Validator;
  *          Either R1 or R2 must equal to zero.
  *
  */
-class ValidatorGB extends ValidatorAbstract
+class ValidatorGB extends VatNumberValidatorAbstract
 {
     /**
      * @param string $vatNumber

@@ -8,7 +8,7 @@
 
 namespace Brammm\Vat\Validator;
 
-interface ValidatorInterface
+interface VatNumberValidator
 {
     /**
      * @param string $vatNumber

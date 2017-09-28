@@ -29,7 +29,7 @@ namespace Brammm\Vat\Validator;
  *      Else R = R1
  *      C9 = R
  */
-class ValidatorBG extends ValidatorAbstract
+class ValidatorBG extends VatNumberValidatorAbstract
 {
 
     /**

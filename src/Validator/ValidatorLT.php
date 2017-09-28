@@ -32,7 +32,7 @@ namespace Brammm\Vat\Validator;
  *          If R2 = 10, then C12 = 0
  *          Else C12 = R2
  */
-class ValidatorLT extends ValidatorAbstract
+class ValidatorLT extends VatNumberValidatorAbstract
 {
 
     /**

@@ -23,7 +23,7 @@ namespace Brammm\Vat\Validator;
  *
  *      R is divisible by 11
  */
-class ValidatorDK extends ValidatorAbstract
+class ValidatorDK extends VatNumberValidatorAbstract
 {
 
     /**

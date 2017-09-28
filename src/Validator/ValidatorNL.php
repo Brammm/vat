@@ -29,7 +29,7 @@ namespace Brammm\Vat\Validator;
  * [C11 C12]
  *      >00
  */
-class ValidatorNL extends ValidatorAbstract
+class ValidatorNL extends VatNumberValidatorAbstract
 {
 
     /**

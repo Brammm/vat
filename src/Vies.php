@@ -278,7 +278,7 @@ class Vies
     public function validateVatSum(string $countryCode, string $vatNumber): bool
     {
         $className = __NAMESPACE__ . '\\Validator\\Validator' . $countryCode;
-        /** @var Validator\ValidatorInterface $instance */
+        /** @var Validator\VatNumberValidator $instance */
         $instance = new $className();
 
         $vatNumber = self::filterVat($vatNumber);

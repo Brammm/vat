@@ -25,7 +25,7 @@ namespace Brammm\Vat\Validator;
  *      If R = 00, then C7 C8 = 37
  *      C7 C8 = R
  */
-class ValidatorMT extends ValidatorAbstract
+class ValidatorMT extends VatNumberValidatorAbstract
 {
 
     /**

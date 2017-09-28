@@ -24,7 +24,7 @@ namespace Brammm\Vat\Validator;
  *      Where R = S1 + S3 + S5 + S7 + S9
  *      Where Si = INT(Ci/5) + (Ci*2)modulo 10
  */
-class ValidatorSE extends ValidatorAbstract
+class ValidatorSE extends VatNumberValidatorAbstract
 {
 
     /**

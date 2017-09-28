@@ -23,7 +23,7 @@ namespace Brammm\Vat\Validator;
  *      If R= 10 or R= 11, Then R = 0
  *      C9 = R
  */
-class ValidatorPT extends ValidatorAbstract
+class ValidatorPT extends VatNumberValidatorAbstract
 {
 
     /**
