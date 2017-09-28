@@ -25,7 +25,7 @@ namespace Brammm\Vat\Validator;
  *      where Di = int(Ci/5) + (2*Ci)modulo10
  *      C11 = (10 – (S1+S2)modulo10)modulo10
  */
-class ValidatorIT extends VatNumberValidatorAbstract
+class ValidatorIT implements VatNumberValidator
 {
     use ProvidesIsEven;
 

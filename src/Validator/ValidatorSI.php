@@ -26,7 +26,7 @@ namespace Brammm\Vat\Validator;
  *      else if R = 11 then number is invalid
  *      else C8 = R
  */
-class ValidatorSI extends VatNumberValidatorAbstract
+class ValidatorSI implements VatNumberValidator
 {
     use ProvidesSumWeights;
 

@@ -12,7 +12,7 @@ namespace Brammm\Vat\Validator;
  * Class ValidatorHR
  * @package Brammm\Vat\Validator
  */
-class ValidatorHR extends VatNumberValidatorAbstract
+class ValidatorHR implements VatNumberValidator
 {
     /**
      * @param string $vatNumber

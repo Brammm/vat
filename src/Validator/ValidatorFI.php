@@ -24,7 +24,7 @@ namespace Brammm\Vat\Validator;
  *      If R = 11 then C8 = 0
  *      Else C8 = R
  */
-class ValidatorFI extends VatNumberValidatorAbstract
+class ValidatorFI implements VatNumberValidator
 {
     use ProvidesSumWeights;
 

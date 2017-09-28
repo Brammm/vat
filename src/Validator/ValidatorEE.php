@@ -24,7 +24,7 @@ namespace Brammm\Vat\Validator;
  *      A2 = CEIL(35;10) = 40
  *      C9 = 40 - 35 = 5
  */
-class ValidatorEE extends VatNumberValidatorAbstract
+class ValidatorEE implements VatNumberValidator
 {
     use ProvidesSumWeights;
 

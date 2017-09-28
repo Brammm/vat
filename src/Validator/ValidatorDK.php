@@ -23,7 +23,7 @@ namespace Brammm\Vat\Validator;
  *
  *      R is divisible by 11
  */
-class ValidatorDK extends VatNumberValidatorAbstract
+class ValidatorDK implements VatNumberValidator
 {
     use ProvidesSumWeights;
 

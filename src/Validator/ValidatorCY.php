@@ -23,7 +23,7 @@ namespace Brammm\Vat\Validator;
  * C1 C2
  *      C1C2 cannot be 12 (e.g. 12000139V is invalid)
  */
-class ValidatorCY extends VatNumberValidatorAbstract
+class ValidatorCY implements VatNumberValidator
 {
     protected $allowedC1 = [0, 1, 3, 4, 5, 9];
 

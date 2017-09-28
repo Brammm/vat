@@ -35,7 +35,7 @@ namespace Brammm\Vat\Validator;
  *      else
  *          C9 =R
  */
-class ValidatorDE extends VatNumberValidatorAbstract
+class ValidatorDE implements VatNumberValidator
 {
     /**
      * @param string $vatNumber

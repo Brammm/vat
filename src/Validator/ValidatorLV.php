@@ -26,7 +26,7 @@ namespace Brammm\Vat\Validator;
  *      If R > -1, then C11 = R
  *      If R = -1, then VAT number is invalid
  */
-class ValidatorLV extends VatNumberValidatorAbstract
+class ValidatorLV implements VatNumberValidator
 {
     use ProvidesSumWeights;
 

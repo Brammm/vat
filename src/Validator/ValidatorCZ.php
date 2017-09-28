@@ -32,7 +32,7 @@ namespace Brammm\Vat\Validator;
  *      D = A2 -A1
  *      C8 = D mod 10
  */
-class ValidatorCZ extends VatNumberValidatorAbstract
+class ValidatorCZ implements VatNumberValidator
 {
     use ProvidesSumWeights;
 

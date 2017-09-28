@@ -39,7 +39,7 @@ namespace Brammm\Vat\Validator;
  *          R = 10 – (S1 + S2) modulo 1
  *          C9 = (R)modulo10
  */
-class ValidatorES extends VatNumberValidatorAbstract
+class ValidatorES implements VatNumberValidator
 {
     use ProvidesIsEven;
     use ProvidesCrossSum;

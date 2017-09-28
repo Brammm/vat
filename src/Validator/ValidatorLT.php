@@ -32,7 +32,7 @@ namespace Brammm\Vat\Validator;
  *          If R2 = 10, then C12 = 0
  *          Else C12 = R2
  */
-class ValidatorLT extends VatNumberValidatorAbstract
+class ValidatorLT implements VatNumberValidator
 {
     use ProvidesSumWeights;
 
