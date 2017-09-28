@@ -71,7 +71,7 @@ class ValidatorES implements VatNumberValidator
      * @param string $vatNumber
      * @return bool
      */
-    public function validate($vatNumber)
+    public function validate($vatNumber): bool
     {
         if (strlen($vatNumber) != 9) {
             return false;

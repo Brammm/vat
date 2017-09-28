@@ -36,7 +36,7 @@ class ValidatorCZ implements VatNumberValidator
      * @param string $vatNumber
      * @return bool
      */
-    public function validate($vatNumber)
+    public function validate($vatNumber): bool
     {
         $vatLength = strlen($vatNumber);
 
