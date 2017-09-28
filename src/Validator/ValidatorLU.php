@@ -12,8 +12,10 @@ namespace Brammm\Vat\Validator;
  * [C7 C8]
  *      ([C1 C2 C3 C4 C5 C6]) Modulo 89
  */
-class ValidatorLU implements CountryValidator
+class ValidatorLU implements Validator
 {
+    use CountryCodeValidator;
+
     /**
      * @inheritdoc
      */

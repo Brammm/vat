@@ -2,7 +2,7 @@
 
 namespace Brammm\Vat\Validator;
 
-interface CountryValidator
+interface Validator
 {
     /**
      * @param string $countryCode
@@ -12,9 +12,9 @@ interface CountryValidator
     public function validate(string $countryCode, string $vatNumber): bool;
 
     /**
-     * Returns the two character country code
+     * Returns wether or not the validator works for the given country code
      *
-     * @return string
+     * @return bool
      */
-    public function getCountryCode(): string;
+    public function validatesCountry(string $countryCode): bool;
 }

@@ -17,8 +17,10 @@ use function Brammm\Vat\sumWeights;
  *      A2 = CEIL(35;10) = 40
  *      C9 = 40 - 35 = 5
  */
-class ValidatorEE implements CountryValidator
+class ValidatorEE implements Validator
 {
+    use CountryCodeValidator;
+
     /**
      * @inheritdoc
      */

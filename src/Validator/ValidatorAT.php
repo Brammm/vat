@@ -21,8 +21,10 @@ use function Brammm\Vat\isEven;
  *      (10 – (R + C2 + C4 + C6 + C8 + 4) modulo 10) modulo 10
  *
  */
-class ValidatorAT implements CountryValidator
+class ValidatorAT implements Validator
 {
+    use CountryCodeValidator;
+
     /**
      * @inheritdoc
      */

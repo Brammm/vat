@@ -25,8 +25,10 @@ use function Brammm\Vat\sumWeights;
  *          If R2 = 10, then C12 = 0
  *          Else C12 = R2
  */
-class ValidatorLT implements CountryValidator
+class ValidatorLT implements Validator
 {
+    use CountryCodeValidator;
+
     /**
      * @inheritdoc
      */

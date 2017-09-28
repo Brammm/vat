@@ -26,8 +26,10 @@ namespace Brammm\Vat\Validator;
  *      else
  *          C9 =R
  */
-class ValidatorDE implements CountryValidator
+class ValidatorDE implements Validator
 {
+    use CountryCodeValidator;
+
     /**
      * @inheritdoc
      */

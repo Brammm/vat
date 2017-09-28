@@ -18,8 +18,10 @@ use function Brammm\Vat\sumWeights;
  *      If R = 00, then C7 C8 = 37
  *      C7 C8 = R
  */
-class ValidatorMT implements CountryValidator
+class ValidatorMT implements Validator
 {
+    use CountryCodeValidator;
+
     /**
      * @inheritdoc
      */

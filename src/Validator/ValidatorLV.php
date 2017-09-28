@@ -19,8 +19,10 @@ use function Brammm\Vat\sumWeights;
  *      If R > -1, then C11 = R
  *      If R = -1, then VAT number is invalid
  */
-class ValidatorLV implements CountryValidator
+class ValidatorLV implements Validator
 {
+    use CountryCodeValidator;
+
     /**
      * @inheritdoc
      */

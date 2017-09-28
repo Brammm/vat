@@ -5,8 +5,10 @@ namespace Brammm\Vat\Validator;
 /**
  * VAT format: [C1 C2 C3 C4 C5 C6 C7 C8]
  */
-class ValidatorIE implements CountryValidator
+class ValidatorIE implements Validator
 {
+    use CountryCodeValidator;
+
     private const ALPHATBET = 'WABCDEFGHIJKLMNOPQRSTUV';
 
     /**

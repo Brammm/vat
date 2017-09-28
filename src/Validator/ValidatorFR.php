@@ -34,8 +34,10 @@ namespace Brammm\Vat\Validator;
  *      20-L, 21-M, 22-N, 23-P, 24-Q, 25-R, 26-S, 27-T, 28-U, 29-V, 30-W, 31-X, 32-Y, 33-Z.
  *
  */
-class ValidatorFR implements CountryValidator
+class ValidatorFR implements Validator
 {
+    use CountryCodeValidator;
+
     # the valid characters for the first two digits (O and I are missing)
     private const ALPHABET = '0123456789ABCDEFGHJKLMNPQRSTUVWXYZ';
 

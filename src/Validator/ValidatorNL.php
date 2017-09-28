@@ -22,8 +22,10 @@ use function Brammm\Vat\sumWeights;
  * [C11 C12]
  *      >00
  */
-class ValidatorNL implements CountryValidator
+class ValidatorNL implements Validator
 {
+    use CountryCodeValidator;
+
     /**
      * @inheritdoc
      */

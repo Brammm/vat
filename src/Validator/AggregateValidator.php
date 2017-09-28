@@ -8,12 +8,12 @@ use Brammm\Vat\Exception\InvalidVatNumberException;
 class AggregateValidator
 {
     /**
-     * @var CountryValidator[]
+     * @var Validator[]
      */
     private $validators;
 
     /**
-     * @param CountryValidator[] $validators
+     * @param Validator[] $validators
      */
     public function __construct(array $validators)
     {
@@ -22,7 +22,7 @@ class AggregateValidator
         }
     }
 
-    public function addValidator(CountryValidator $validator): void
+    public function addValidator(Validator $validator): void
     {
         $this->validators[$validator->getCountryCode()] = $validator;
     }

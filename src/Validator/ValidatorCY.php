@@ -14,8 +14,10 @@ namespace Brammm\Vat\Validator;
  * C1 C2
  *      C1C2 cannot be 12 (e.g. 12000139V is invalid)
  */
-class ValidatorCY implements CountryValidator
+class ValidatorCY implements Validator
 {
+    use CountryCodeValidator;
+
     private const ALLOWED_C1 = [0, 1, 3, 4, 5, 9];
 
     /**

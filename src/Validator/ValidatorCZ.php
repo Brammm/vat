@@ -25,8 +25,10 @@ use function Brammm\Vat\sumWeights;
  *      D = A2 -A1
  *      C8 = D mod 10
  */
-class ValidatorCZ implements CountryValidator
+class ValidatorCZ implements Validator
 {
+    use CountryCodeValidator;
+
     /**
      * @var array
      */
