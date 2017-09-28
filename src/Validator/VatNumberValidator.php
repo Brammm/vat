@@ -1,10 +1,4 @@
 <?php
-/**
- * \Brammm\Vat
- *
- * @author  Paweł Krzaczkowski <krzaczek+github@gmail.com>
- * @license  MIT
- */
 
 namespace Brammm\Vat\Validator;
 

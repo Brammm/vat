@@ -1,17 +1,8 @@
 <?php
-/**
- * \Brammm\Vat
- *
- * @author  Paweł Krzaczkowski <krzaczek+github@gmail.com>
- * @license  MIT
- */
 
 namespace Brammm\Vat\Validator;
 
 /**
- * Class ValidatorSK
- * @package Brammm\Vat\Validator
- *
  * VAT format: [C1 C2 C3 C4 C5 C6 C7 C8 C9 C10]
  *
  * Range:
