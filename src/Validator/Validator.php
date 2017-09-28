@@ -2,14 +2,18 @@
 
 namespace Brammm\Vat\Validator;
 
+use Brammm\Vat\Exception\InvalidCountryCodeException;
 use Brammm\Vat\Exception\InvalidVatNumberException;
 
 interface Validator
 {
     /**
+     * MUST throw appropriate exceptions
+     *
      * @param string $countryCode
      * @param string $vatNumber
      *
+     * @throws InvalidCountryCodeException
      * @throws InvalidVatNumberException
      *
      * @return void

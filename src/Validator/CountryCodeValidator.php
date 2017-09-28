@@ -2,6 +2,7 @@
 
 namespace Brammm\Vat\Validator;
 
+use Brammm\Vat\Exception\InvalidCountryCodeException;
 use Brammm\Vat\Exception\InvalidVatNumberException;
 
 trait CountryCodeValidator
@@ -35,6 +36,10 @@ trait CountryCodeValidator
      */
     public function validate(string $countryCode, string $vatNumber): void
     {
+        if (!$this->supportsCountry($countryCode)) {
+            throw InvalidCountryCodeException::forCountryCode($countryCode);
+        }
+
         if (!$this->isValid($vatNumber)) {
             throw InvalidVatNumberException::forVatNumber($vatNumber);
         }
