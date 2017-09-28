@@ -1,0 +1,17 @@
+<phpunit
+    colors="true"
+    stopOnError="true"
+    stopOnFailure="true"
+    bootstrap="./vendor/autoload.php">
+
+    <testsuite name="Unit test suite">
+        <directory>./tests</directory>
+    </testsuite>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+
+</phpunit>

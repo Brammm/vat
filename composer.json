@@ -1,0 +1,32 @@
+{
+    "name": "brammm/vat",
+    "type": "library",
+    "description": "A library to work with VAT numbers",
+    "keywords": ["VIES","VAT","EU","EC"],
+    "homepage": "https://github.com/brammm/vat",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bram Van der Sype",
+            "email": "bram.vandersype@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Brammm\\Vat\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Brammm\\Vat\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=7.1",
+        "ext-soap": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.1"
+    }
+}
