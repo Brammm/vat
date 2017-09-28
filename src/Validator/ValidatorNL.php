@@ -22,7 +22,7 @@ use function Brammm\Vat\sumWeights;
  * [C11 C12]
  *      >00
  */
-class ValidatorNL implements VatNumberValidator
+class ValidatorNL implements Validator
 {
     /**
      * @inheritdoc

@@ -17,7 +17,7 @@ use function Brammm\Vat\sumWeights;
  *      If R = 11 then C8 = 0
  *      Else C8 = R
  */
-class ValidatorFI implements VatNumberValidator
+class ValidatorFI implements Validator
 {
     /**
      * @inheritdoc

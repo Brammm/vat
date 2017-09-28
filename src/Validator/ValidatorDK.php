@@ -16,7 +16,7 @@ use function Brammm\Vat\sumWeights;
  *
  *      R is divisible by 11
  */
-class ValidatorDK implements VatNumberValidator
+class ValidatorDK implements Validator
 {
     /**
      * @inheritdoc

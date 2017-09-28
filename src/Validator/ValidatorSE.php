@@ -18,7 +18,7 @@ use function Brammm\Vat\isEven;
  *      Where R = S1 + S3 + S5 + S7 + S9
  *      Where Si = INT(Ci/5) + (Ci*2)modulo 10
  */
-class ValidatorSE implements VatNumberValidator
+class ValidatorSE implements Validator
 {
     /**
      * @inheritdoc

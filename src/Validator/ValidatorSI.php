@@ -19,7 +19,7 @@ use function Brammm\Vat\sumWeights;
  *      else if R = 11 then number is invalid
  *      else C8 = R
  */
-class ValidatorSI implements VatNumberValidator
+class ValidatorSI implements Validator
 {
     /**
      * @inheritdoc

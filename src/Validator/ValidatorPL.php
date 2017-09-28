@@ -17,7 +17,7 @@ use function Brammm\Vat\sumWeights;
  *      If R = 10, then VAT number is invalid
  *      C10 = R
  */
-class ValidatorPL implements VatNumberValidator
+class ValidatorPL implements Validator
 {
     /**
      * @inheritdoc

@@ -22,7 +22,7 @@ use function Brammm\Vat\sumWeights;
  *      Else R = R1
  *      C9 = R
  */
-class ValidatorBG implements VatNumberValidator
+class ValidatorBG implements Validator
 {
     /**
      * @param string $vatNumber
