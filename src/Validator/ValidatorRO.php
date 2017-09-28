@@ -20,7 +20,7 @@ use function Brammm\Vat\sumWeights;
  *      Else R = R1
  *      C10 = R
  */
-class ValidatorRO implements Validator
+class ValidatorRO implements CountryValidator
 {
     /**
      * @inheritdoc

@@ -17,7 +17,7 @@ use function Brammm\Vat\sumWeights;
  *      Otherwise, subtract the number in the right hand column of A1 from 10
  *      C8 = A1
  */
-class ValidatorHU implements Validator
+class ValidatorHU implements CountryValidator
 {
     /**
      * @inheritdoc

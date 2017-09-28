@@ -35,7 +35,7 @@ use function Brammm\Vat\sumWeights;
  *          Either R1 or R2 must equal to zero.
  *
  */
-class ValidatorGB implements Validator
+class ValidatorGB implements CountryValidator
 {
     /**
      * @inheritdoc

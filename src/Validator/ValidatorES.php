@@ -33,7 +33,7 @@ use function Brammm\Vat\isEven;
  *          R = 10 – (S1 + S2) modulo 1
  *          C9 = (R)modulo10
  */
-class ValidatorES implements Validator
+class ValidatorES implements CountryValidator
 {
     /**
      * Allowed C1 if C9 is Alphabetic

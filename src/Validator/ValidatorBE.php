@@ -14,7 +14,7 @@ namespace Brammm\Vat\Validator;
  * [C8 C9]
  *      97 - ([C0 C1 C2 C3 C4 C5 C6 C7] modulo 97)
  */
-class ValidatorBE implements Validator
+class ValidatorBE implements CountryValidator
 {
     /**
      * @inheritdoc

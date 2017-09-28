@@ -16,7 +16,7 @@ use function Brammm\Vat\sumWeights;
  *      A2 = A1 modulo 11
  *      C9 = A2 modulo 10
  */
-class ValidatorEL implements Validator
+class ValidatorEL implements CountryValidator
 {
     /**
      * @inheritdoc
