@@ -4,7 +4,7 @@ namespace Brammm\Vat\Validator;
 
 class ValidatorFactory
 {
-    public static function create()
+    public static function createEUValidator()
     {
         return new AggregateValidator(...[
             new ValidatorAT(),

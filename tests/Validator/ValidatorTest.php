@@ -17,7 +17,7 @@ class ValidatorTest extends TestCase
 
     public function setUp()
     {
-        $this->validator = ValidatorFactory::create();
+        $this->validator = ValidatorFactory::createEUValidator();
     }
 
     /**
