@@ -5,7 +5,7 @@ namespace Brammm\Vat\Validator;
 use Brammm\Vat\Exception\InvalidCountryCodeException;
 use Brammm\Vat\Exception\InvalidVatNumberException;
 
-class Validator
+class AggregateValidator
 {
     /**
      * @var CountryValidator[]

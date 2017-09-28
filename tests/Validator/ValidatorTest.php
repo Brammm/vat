@@ -4,14 +4,14 @@ namespace Brammm\Vat\Tests\Validator;
 
 use Brammm\Vat\Exception\InvalidCountryCodeException;
 use Brammm\Vat\Exception\InvalidVatNumberException;
-use Brammm\Vat\Validator\Validator;
+use Brammm\Vat\Validator\AggregateValidator;
 use Brammm\Vat\Validator\ValidatorFactory;
 use PHPUnit\Framework\TestCase;
 
 class ValidatorTest extends TestCase
 {
     /**
-     * @var Validator
+     * @var AggregateValidator
      */
     private $validator;
 

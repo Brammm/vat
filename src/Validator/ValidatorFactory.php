@@ -6,7 +6,7 @@ class ValidatorFactory
 {
     public static function create()
     {
-        return new Validator([
+        return new AggregateValidator([
             new ValidatorAT(),
             new ValidatorBE(),
             new ValidatorBG(),

@@ -3,7 +3,7 @@
 namespace Brammm\Vat\Tests;
 
 use Brammm\Vat\Exception\InvalidVatNumberException;
-use Brammm\Vat\Validator\Validator;
+use Brammm\Vat\Validator\AggregateValidator;
 use Brammm\Vat\VatNumber;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
@@ -11,13 +11,13 @@ use PHPUnit_Framework_MockObject_MockObject;
 class VatNumberTest extends TestCase
 {
     /**
-     * @var Validator|PHPUnit_Framework_MockObject_MockObject
+     * @var AggregateValidator|PHPUnit_Framework_MockObject_MockObject
      */
     private $validator;
 
     public function setUp()
     {
-        $this->validator = $validator = $this->createMock(Validator::class);
+        $this->validator = $validator = $this->createMock(AggregateValidator::class);
     }
 
     public function testItConstructsFromIdentifier()
