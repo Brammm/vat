@@ -28,10 +28,9 @@ use function Brammm\Vat\sumWeights;
 class ValidatorLT implements VatNumberValidator
 {
     /**
-     * @param string $vatNumber
-     * @return bool
+     * @inheritdoc
      */
-    public function validate($vatNumber): bool
+    public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) == 12) {
             return $this->validateTemporaryTaxpayer($vatNumber);
@@ -44,7 +43,7 @@ class ValidatorLT implements VatNumberValidator
         return false;
     }
 
-    private function validateTemporaryTaxpayer($vatNumber)
+    private function validateTemporaryTaxpayer(string $vatNumber): bool
     {
         if ($vatNumber[10] != 1) {
             return false;
@@ -65,7 +64,7 @@ class ValidatorLT implements VatNumberValidator
         }
     }
 
-    private function validateLegal($vatNumber)
+    private function validateLegal(string $vatNumber): bool
     {
         if ($vatNumber[7] != 1) {
             return false;

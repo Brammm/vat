@@ -59,7 +59,7 @@ class ValidatorTest extends TestCase
             }
             foreach ($numbers[0] as $number) {
                 $result = $vies->validateVatSum($country, $number);
-                $this->assertTrue($result);
+                $this->assertTrue($result, sprintf('Failed validation for country "%s"', $country));
             }
         }
     }

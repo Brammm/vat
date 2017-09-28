@@ -37,23 +37,23 @@ namespace Brammm\Vat\Validator;
 class ValidatorFR implements VatNumberValidator
 {
     # the valid characters for the first two digits (O and I are missing)
-    protected $alphabet = '0123456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+    private const ALPHABET = '0123456789ABCDEFGHJKLMNPQRSTUVWXYZ';
 
     /**
      * @param string $vatNumber
      * @return bool
      */
-    public function validate($vatNumber): bool
+    public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) != 11) {
             return false;
         }
 
-        if (strpos($this->alphabet, $vatNumber[0]) === false) {
+        if (strpos(self::ALPHABET, $vatNumber[0]) === false) {
             return false;
         }
 
-        if (strpos($this->alphabet, $vatNumber[1]) === false) {
+        if (strpos(self::ALPHABET, $vatNumber[1]) === false) {
             return false;
         }
 
@@ -72,11 +72,7 @@ class ValidatorFR implements VatNumberValidator
         return true;
     }
 
-    /**
-     * @param $vatNumber
-     * @return string
-     */
-    private function validateOld($vatNumber)
+    private function validateOld(string $vatNumber): string
     {
         $checkval = substr($vatNumber, 2);
         $checkval .= "12";
@@ -85,13 +81,9 @@ class ValidatorFR implements VatNumberValidator
         return ($checkval == 0) ? "00" : $checkval;
     }
 
-    /**
-     * @param $vatNumber
-     * @return string
-     */
-    private function validateNew($vatNumber)
+    private function validateNew(string $vatNumber): bool
     {
-        $checkCharacter = array_flip(str_split($this->alphabet));
+        $checkCharacter = array_flip(str_split(self::ALPHABET));
 
         if (ctype_digit($vatNumber[0])) {
             $checkval = ($checkCharacter[$vatNumber[0]] * 24) + $checkCharacter[$vatNumber[1]] - 10;

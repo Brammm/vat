@@ -8,5 +8,5 @@ interface VatNumberValidator
      * @param string $vatNumber
      * @return bool
      */
-    public function validate($vatNumber): bool;
+    public function validate(string $vatNumber): bool;
 }

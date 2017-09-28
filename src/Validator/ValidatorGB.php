@@ -38,10 +38,9 @@ use function Brammm\Vat\sumWeights;
 class ValidatorGB implements VatNumberValidator
 {
     /**
-     * @param string $vatNumber
-     * @return bool
+     * @inheritdoc
      */
-    public function validate($vatNumber): bool
+    public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) == 5) {
             return $this->validateGovernment($vatNumber);
@@ -65,7 +64,7 @@ class ValidatorGB implements VatNumberValidator
         return true;
     }
 
-    private function validateGovernment($vatNumber)
+    private function validateGovernment(string $vatNumber): bool
     {
         $prefix = strtoupper(substr($vatNumber, 0, 2));
         $number = (int)substr($vatNumber, 2, 3);

@@ -28,7 +28,7 @@ class ValidatorBG implements VatNumberValidator
      * @param string $vatNumber
      * @return bool
      */
-    public function validate($vatNumber): bool
+    public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) != 9) {
             return false;

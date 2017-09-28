@@ -40,21 +40,21 @@ class ValidatorES implements VatNumberValidator
      *
      * @var array
      */
-    protected $allowedC1Alphabetic = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'N', 'P', 'Q', 'R', 'S', 'W'];
+    private const ALLOWED_C1_ALPHABETIC = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'N', 'P', 'Q', 'R', 'S', 'W'];
 
     /**
      * Allowed C1 if C9 is Numeric
      *
      * @var array
      */
-    protected $allowedC1Numeric = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'U', 'V'];
+    private const ALLOWED_C1_NUMERIC = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'U', 'V'];
 
     /**
      * Check Character: 1-A, 2-B, 3-C, 4-D, 5-E, 6-F, 7-G, 8-H, 9-I, 10-J
      *
      * @var array
      */
-    protected $checkCharacter = [
+    private const CHECK_CHARACTER = [
         1 => 'A',
         2 => 'B',
         3 => 'C',
@@ -68,10 +68,9 @@ class ValidatorES implements VatNumberValidator
     ];
 
     /**
-     * @param string $vatNumber
-     * @return bool
+     * @inheritdoc
      */
-    public function validate($vatNumber): bool
+    public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) != 9) {
             return false;
@@ -84,10 +83,10 @@ class ValidatorES implements VatNumberValidator
         $checksum = $vatNumber[8];
         $fieldC1 = $vatNumber[0];
 
-        if (ctype_alpha($checksum) && in_array($fieldC1, $this->allowedC1Alphabetic)) {
+        if (ctype_alpha($checksum) && in_array($fieldC1, self::ALLOWED_C1_ALPHABETIC)) {
             // Juridical entities other than national ones
             $checkval = $this->validateJuridical($vatNumber);
-        } elseif (ctype_digit($checksum) && in_array($fieldC1, $this->allowedC1Numeric)) {
+        } elseif (ctype_digit($checksum) && in_array($fieldC1, self::ALLOWED_C1_NUMERIC)) {
             // National juridical entities
             $checkval = $this->validateNational($vatNumber);
         } else {
@@ -101,11 +100,7 @@ class ValidatorES implements VatNumberValidator
         return true;
     }
 
-    /**
-     * @param $vatNumber
-     * @return string
-     */
-    private function validateJuridical($vatNumber)
+    private function validateJuridical(string $vatNumber): string
     {
         $checkval = 0;
 
@@ -114,14 +109,10 @@ class ValidatorES implements VatNumberValidator
         }
 
         $checkval = 10 - ($checkval % 10);
-        return $this->checkCharacter[$checkval];
+        return self::CHECK_CHARACTER[$checkval];
     }
 
-    /**
-     * @param $vatNumber
-     * @return string
-     */
-    private function validateNational($vatNumber)
+    private function validateNational(string $vatNumber): string
     {
         $checkval = 0;
 

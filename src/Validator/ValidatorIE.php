@@ -7,13 +7,12 @@ namespace Brammm\Vat\Validator;
  */
 class ValidatorIE implements VatNumberValidator
 {
-    protected $alphabet = 'WABCDEFGHIJKLMNOPQRSTUV';
+    private const ALPHATBET = 'WABCDEFGHIJKLMNOPQRSTUV';
 
     /**
-     * @param string $vatNumber
-     * @return bool
+     * @inheritdoc
      */
-    public function validate($vatNumber): bool
+    public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) != 8 && strlen($vatNumber) != 9) {
             return false;
@@ -26,11 +25,7 @@ class ValidatorIE implements VatNumberValidator
         return true;
     }
 
-    /**
-     * @param $vatNumber
-     * @return bool
-     */
-    private function validateIEOld($vatNumber)
+    private function validateIEOld(string $vatNumber): bool
     {
         $transform = ['0', substr($vatNumber, 2, 5), $vatNumber[0], $vatNumber[7]];
         $vat_id = join('', $transform);
@@ -38,11 +33,7 @@ class ValidatorIE implements VatNumberValidator
         return $this->validateIENew($vat_id);
     }
 
-    /**
-     * @param $vatNumber
-     * @return bool
-     */
-    private function validateIENew($vatNumber)
+    private function validateIENew(string $vatNumber): bool
     {
         $checksum = strtoupper(substr($vatNumber, 7, 1));
         $checkNumber = substr($vatNumber, 0, 8);
@@ -54,7 +45,7 @@ class ValidatorIE implements VatNumberValidator
         }
 
         if (strlen($vatNumber) == 9) {
-            $checkval += (9 * strpos($this->alphabet, $vatNumber[8]));
+            $checkval += (9 * strpos(self::ALPHATBET, $vatNumber[8]));
         }
 
         $checkval = ($checkval % 23);

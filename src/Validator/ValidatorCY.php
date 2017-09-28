@@ -16,13 +16,12 @@ namespace Brammm\Vat\Validator;
  */
 class ValidatorCY implements VatNumberValidator
 {
-    protected $allowedC1 = [0, 1, 3, 4, 5, 9];
+    private const ALLOWED_C1 = [0, 1, 3, 4, 5, 9];
 
     /**
-     * @param string $vatNumber
-     * @return bool
+     * @inheritdoc
      */
-    public function validate($vatNumber): bool
+    public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) != 9) {
             return false;
@@ -32,7 +31,7 @@ class ValidatorCY implements VatNumberValidator
             return false;
         }
 
-        if (!in_array($vatNumber[0], $this->allowedC1)) {
+        if (!in_array($vatNumber[0], self::ALLOWED_C1)) {
             return false;
         }
 

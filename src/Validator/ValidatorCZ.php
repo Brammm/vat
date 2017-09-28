@@ -30,13 +30,12 @@ class ValidatorCZ implements VatNumberValidator
     /**
      * @var array
      */
-    protected $allowedD = [8, 7, 6, 5, 4, 3, 2, 1, 0, 9, 8];
+    private const ALLOWED_D = [8, 7, 6, 5, 4, 3, 2, 1, 0, 9, 8];
 
     /**
-     * @param string $vatNumber
-     * @return bool
+     * @inheritdoc
      */
-    public function validate($vatNumber): bool
+    public function validate(string $vatNumber): bool
     {
         $vatLength = strlen($vatNumber);
 
@@ -77,9 +76,10 @@ class ValidatorCZ implements VatNumberValidator
      *      C8 = D mod 10
      *
      * @param string $vatNumber
+     *
      * @return bool
      */
-    protected function validateLegalEntities($vatNumber)
+    protected function validateLegalEntities(string $vatNumber): bool
     {
         $weights = array(8, 7, 6, 5, 4, 3, 2);
         $checksum = (int)$vatNumber[7];
@@ -108,9 +108,10 @@ class ValidatorCZ implements VatNumberValidator
      *      C5 C6 ... Day of birth
      *
      * @param string $vatNumber
+     *
      * @return bool
      */
-    protected function validateIndividualsShort($vatNumber)
+    protected function validateIndividualsShort(string $vatNumber): bool
     {
         $monthBase = array_merge(range(1, 12), range(51, 62));
 
@@ -156,9 +157,10 @@ class ValidatorCZ implements VatNumberValidator
      *      D = A2 -A1
      *
      * @param string $vatNumber
+     *
      * @return bool
      */
-    protected function validateIndividualsShortSpecial($vatNumber)
+    protected function validateIndividualsShortSpecial(string $vatNumber): bool
     {
         $weights = array(0, 8, 7, 6, 5, 4, 3, 2);
         $checkval = sumWeights($weights, $vatNumber, 1);
@@ -171,7 +173,7 @@ class ValidatorCZ implements VatNumberValidator
         }
 
         $checksum = $checksum - $checkval;
-        $checkval = $this->allowedD[$checksum - 1];
+        $checkval = self::ALLOWED_D[$checksum - 1];
 
         if ($vatNumber[8] != $checkval) {
             return false;
@@ -197,9 +199,10 @@ class ValidatorCZ implements VatNumberValidator
      *              A1 must be divisible by 11 with no remainder.
      *
      * @param string $vatNumber
+     *
      * @return bool
      */
-    public function validateIndividualsLong($vatNumber)
+    public function validateIndividualsLong(string $vatNumber): bool
     {
         $monthBase = array_merge(range(1, 12), range(21, 32), range(51, 62), range(71, 82));
 

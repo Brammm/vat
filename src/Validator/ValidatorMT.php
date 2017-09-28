@@ -21,10 +21,9 @@ use function Brammm\Vat\sumWeights;
 class ValidatorMT implements VatNumberValidator
 {
     /**
-     * @param string $vatNumber
-     * @return bool
+     * @inheritdoc
      */
-    public function validate($vatNumber): bool
+    public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) != 8) {
             return false;

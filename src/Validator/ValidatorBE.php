@@ -17,10 +17,9 @@ namespace Brammm\Vat\Validator;
 class ValidatorBE implements VatNumberValidator
 {
     /**
-     * @param string $vatNumber
-     * @return bool
+     * @inheritdoc
      */
-    public function validate($vatNumber): bool
+    public function validate(string $vatNumber): bool
     {
         if (strlen($vatNumber) == 9) {
             $vatNumber = "0" . $vatNumber;
