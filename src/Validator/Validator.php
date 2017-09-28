@@ -2,19 +2,26 @@
 
 namespace Brammm\Vat\Validator;
 
+use Brammm\Vat\Exception\InvalidVatNumberException;
+
 interface Validator
 {
     /**
      * @param string $countryCode
      * @param string $vatNumber
-     * @return bool
+     *
+     * @throws InvalidVatNumberException
+     *
+     * @return void
      */
-    public function validate(string $countryCode, string $vatNumber): bool;
+    public function validate(string $countryCode, string $vatNumber): void;
 
     /**
-     * Returns wether or not the validator works for the given country code
+     * Returns boolean wether or not the validator works for the given country code
+     *
+     * @param string $countryCode
      *
      * @return bool
      */
-    public function validatesCountry(string $countryCode): bool;
+    public function supportsCountry(string $countryCode): bool;
 }

@@ -32,7 +32,7 @@ class ValidatorHU implements Validator
     /**
      * @inheritdoc
      */
-    public function validate(string $countryCode, string $vatNumber): bool
+    protected function isValid(string $vatNumber): bool
     {
         if (strlen($vatNumber) != 8) {
             return false;

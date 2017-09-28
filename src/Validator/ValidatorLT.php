@@ -40,7 +40,7 @@ class ValidatorLT implements Validator
     /**
      * @inheritdoc
      */
-    public function validate(string $countryCode, string $vatNumber): bool
+    protected function isValid(string $vatNumber): bool
     {
         if (strlen($vatNumber) == 12) {
             return $this->validateTemporaryTaxpayer($vatNumber);

@@ -1,7 +1,5 @@
 <phpunit
     colors="true"
-    stopOnError="true"
-    stopOnFailure="true"
     bootstrap="./vendor/autoload.php">
 
     <testsuite name="Unit test suite">

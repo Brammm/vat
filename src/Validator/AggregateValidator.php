@@ -3,9 +3,8 @@
 namespace Brammm\Vat\Validator;
 
 use Brammm\Vat\Exception\InvalidCountryCodeException;
-use Brammm\Vat\Exception\InvalidVatNumberException;
 
-class AggregateValidator
+class AggregateValidator implements Validator
 {
     /**
      * @var Validator[]
@@ -15,35 +14,48 @@ class AggregateValidator
     /**
      * @param Validator[] $validators
      */
-    public function __construct(array $validators)
+    public function __construct(Validator ...$validators)
     {
-        foreach ($validators as $validator) {
-            $this->addValidator($validator);
-        }
-    }
-
-    public function addValidator(Validator $validator): void
-    {
-        $this->validators[$validator->getCountryCode()] = $validator;
+        $this->validators = $validators;
     }
 
     /**
-     * Validates a country code and VAT number combination
-     *
-     * @param string $countryCode
-     * @param string $vatNumber
-     *
-     * @throws InvalidCountryCodeException
-     * @throws InvalidVatNumberException
+     * @inheritdoc
      */
     public function validate(string $countryCode, string $vatNumber): void
     {
-        if (!isset($this->validators[$countryCode])) {
+        $validator = $this->getValidator($countryCode);
+
+        if (null === $validator) {
             throw InvalidCountryCodeException::forCountryCode($countryCode);
         }
 
-        if (!$this->validators[$countryCode]->validate($countryCode, $vatNumber)) {
-            throw InvalidVatNumberException::forVatNumber($vatNumber);
+        $this->getValidator($countryCode)->validate($countryCode, $vatNumber);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function supportsCountry(string $countryCode): bool
+    {
+        return (bool)$this->getValidator($countryCode);
+    }
+
+    /**
+     * @param string $countryCode
+     *
+     * @throws InvalidCountryCodeException
+     *
+     * @return Validator|null
+     */
+    private function getValidator(string $countryCode): ?Validator
+    {
+        foreach ($this->validators as $validator) {
+            if ($validator->supportsCountry($countryCode)) {
+                return $validator;
+            }
         }
+
+        return null;
     }
 }
