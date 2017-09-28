@@ -36,6 +36,13 @@ class VatNumberTest extends TestCase
         $this->assertSame('0123456789', $vatNumber->getVatNumber());
     }
 
+    public function testItFiltersVatNumber()
+    {
+        $vatNumber = VatNumber::fromIdentifier('BE0123.456-789', $this->validator);
+
+        $this->assertSame('0123456789', $vatNumber->getVatNumber());
+    }
+
     public function testItDoesntCatchValidatorException()
     {
         $this->validator->method('validate')
